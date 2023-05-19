@@ -27,4 +27,5 @@ Server
 /Server
 /server
 ./Server
-Server/**Server/**
+Server/**
+Server/**
