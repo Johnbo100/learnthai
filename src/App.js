@@ -10,10 +10,9 @@ function App() {
     <div className="App">
       <Title />
       <Card />
+      <Categories />
       <Newword />
       <Update />
-      
-      <Categories />
     </div>
   );
 }

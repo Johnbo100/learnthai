@@ -8,7 +8,7 @@ function Newword() {
     const[th,setTh]=useState('')
     const[category,setCategory]=useState([{}])
     const[cat,setCat]=useState([{}])
-    const[nwadded,setNwadded]=useState('waiting...')
+    const[nwadded,setNwadded]=useState('...')
 
 
     useEffect(() => {
@@ -22,11 +22,12 @@ function Newword() {
     }
 
     const addWord= async ()=>{
+      setNwadded("Adding new word...")
         await Axios.post(process.env.REACT_APP_ADDWORD,{en:en,th:th,cat:cat}).then((response)=>{
             console.log('New record added')
-            
+            setNwadded('New word added')
         }).catch(error => console.log(error)) 
-        setNwadded('New word added')
+        
     }
     
     const handleChangeEn = event => {
@@ -45,7 +46,10 @@ function Newword() {
         console.log('value is:', event.target.value);
       };  
   return (
+    <>
+    <div className='new-word'>{nwadded}</div>
     <div className='newword'>
+      
        <li>Add new words:  </li>
        <select name = 'category' onChange={handleChangeCat}>
                 <option>Select category</option>
@@ -66,11 +70,8 @@ function Newword() {
        <button onClick={addWord}>
         Add
        </button>
-       <div className="status">{nwadded}</div>
-       
-
-        
     </div>
+    </>
   )
 }
 

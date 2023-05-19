@@ -179,6 +179,17 @@ input{
   margin-left: 10px;
   color: gold;
 }
+.update-status{
+  background-color: blueviolet;
+  color: aliceblue;
+  font-size: xx-large;
+  padding: 30px; 
+  text-align: center;
+  width: 100vw;
+  position: -webkit-sticky; 
+  position: sticky; top: 0; 
+  z-index: 100;
+}
 
 
 @keyframes App-logo-spin {
@@ -190,7 +201,7 @@ input{
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
 .cardinner{
   padding: 0px;
   margin: 0px;
