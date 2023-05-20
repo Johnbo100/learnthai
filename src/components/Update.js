@@ -1,97 +1,91 @@
-import Axios from 'axios'
-import React, { useState } from 'react'
+import Axios from "axios";
+import React, { useState } from "react";
 
 function Update() {
-  const[words, setWords] = useState([])
-  const [status, setStatus] = useState('Waiting..')
+  const [words, setWords] = useState([]);
+  const [status, setStatus] = useState("Status");
+  const [enupdate, setEnupdate] = useState("");
+  const [thupdate, setThupdate] = useState("");
+  const [catupdate, setCatupdate] = useState("");
 
   const getWords = async () => {
-    console.log('in the getWords function')
-    await Axios.get(process.env.REACT_APP_ALLWORDS).then((response) => {
-      console.log('Response from getWords ' + response)
-      setWords(response.data)
-    }).catch(error => console.log(error))
-  }
+    console.log("in the getWords function");
+    await Axios.get(process.env.REACT_APP_ALLWORDS)
+      .then((response) => {
+        console.log("Response from getWords " + response);
+        setWords(response.data);
+      })
+      .catch((error) => console.log(error));
+  };
 
-  const updateWordEn = (val, id) => {
-    Axios.put(process.env.REACT_APP_UPDATEEN, { en: val, id: id }).then((response) => {
-      console.log('updated en')
-    }).catch(error => console.log(error))
-  }
+  
 
-  const updateWordTh = (val, id) => {
-    Axios.put(process.env.REACT_APP_UPDATETH, { id: id, th: val }).then((response) => {
-      console.log('updated th')
-    }).catch(error => console.log(error))
-  }
-
-  const updateWordCat = (val, id) => {
-    Axios.put(process.env.REACT_APP_UPDATECAT, { id: id, cat: val }).then((response) => {
-      console.log('updated cat')
-    }).catch(error => console.log(error))
-  }
-
-  const updateWord = (e) => {
-    if (e.key === 'Enter') {
-        console.log("Enter button pressed")
-        setStatus('Updating...')
-      // Update the text box value
-      const input = e.target
-      const value = input.value
-      const id = input.dataset.id
-      
-        if (input.name === 'cat') {
-          updateWordCat(value, id)
-          setStatus("Category updated")
-        } else if (input.name === 'en') {
-          updateWordEn(value, id)
-          setStatus("English word updated")
-        } else if (input.name === 'th') {
-          updateWordTh(value, id)
-          setStatus("Thai word updated")
-        }
-      
+  const updaterow = (e,id) => {
+    e.preventDefault()
+    if (enupdate !== "" || thupdate !== "" || catupdate !== "") {
+      const data = {
+        id: id,
+        en: enupdate,
+        th: thupdate,
+        cat: catupdate,
+      };
+      console.log(data)
+      setStatus("Updating...")
+      Axios.put(process.env.REACT_APP_UPDATEWORDS, data)
+        .then((response) => {
+          console.log("All words posted");
+          setStatus("Words updated succesfully")
+        })
+        .catch((error) => console.log(error));
     }
-  }
+  };
+  
 
   return (
     <div>
-        <div className='update-status'>{status}</div>
-      <div><button onClick={getWords}>show records</button></div>
+      <div className="update-status">{status}</div>
+      <div>
+        <button onClick={getWords}>show records</button>
+      </div>
       <div>
         {words.map((val, key) => {
           return (
-            <div className='grid'>
-              <label>Category:</label>
+            <div className="grid">
+              <label>Cat</label>
               <input
                 type="text"
                 defaultValue={val.cat}
-                onKeyDown={updateWord}
+                onChange={(e) => setCatupdate(e.target.value)}
                 data-id={val.id}
-                name='cat'
+                name="cat"
               />
-              <label>English</label>
+              <label>En</label>
               <input
                 type="text"
                 defaultValue={val.en}
-                onKeyDown={updateWord}
+                onChange={(e) => setEnupdate(e.target.value)}
                 data-id={val.id}
-                name='en'
+                name="en"
+                className="en-text"
               />
-              <label>Thai</label>
+              <label>Th</label>
               <input
                 type="text"
                 defaultValue={val.th}
-                onKeyDown={updateWord}
+                onChange={(e) => setThupdate(e.target.value)}
                 data-id={val.id}
-                name='th'
+                name="th"
+                className="th-text"
               />
+              <button className="update-post-btn" onClick={(e)=>updaterow(e,val.id)}>
+              &#94;
+              </button>
             </div>
-          )
+          );
         })}
       </div>
     </div>
-  )
+  );
 }
 
-export default Update
+export default Update;

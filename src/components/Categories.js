@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 function Categories() {
         
     const[cat,setCat]=useState('')
-    const[catadd,setCatadd]=useState('waiting...')
+    const[catadd,setCatadd]=useState('')
    
 
     const addCat=async ()=>{
@@ -21,8 +21,7 @@ function Categories() {
       };
 
   return (
-    <div className='newword'>
-       <li>Add new category:</li> 
+    <div className='newcat'> 
        <input
         onChange={handleChange}
        />

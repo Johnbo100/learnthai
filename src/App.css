@@ -35,6 +35,9 @@
   justify-content:space-between;
   margin-left: 50px;
 }
+.en-text{
+  color:#e21515;
+}
 input{
   height:30px;
 }
@@ -45,6 +48,8 @@ select{
   padding:5px;
   cursor: pointer;
   background-color: gold;
+  color: #e21515;
+  text-align: center;
 }
 select:hover{
   border-color: rgb(225, 21, 21);
@@ -93,22 +98,10 @@ input{
   padding-top: 5px;
 
 }
-.newword{
-  display: flex;
-  width: 100vw;
-  border-color: black;
-  border-width: 3px;
-  justify-content: center;
-  background-color: rgb(189, 114, 22);
-  margin-top: 50px;
-  margin-bottom: 50px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  align-items: center;
-}
+
 .flip-card {
   background-color: transparent;
-  width: 300px;
+  width: 350px;
   height: 200px;
   border: 1px solid gold;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
@@ -174,24 +167,64 @@ input{
   
   
 }
+.new-word-cat-container{
+  display: flex;
+  flex-direction: row;
+}
+.newword{
+  display: flex;
+  width: 60vw;
+  border-color: black;
+  border-width: 3px;
+  justify-content: center;
+  background-color: rgb(255 215 2);
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 20px;
+  align-items: center;
+}
+.newcat{
+  display:flex;
+  width:40vw;
+  border-color: black;
+  border-width: 3px;
+  justify-content: center;
+  background-color: rgb(255 215 2);
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  align-items: center;
+}
+option{
+  color: #e21515;
+}
 .status{
   font-size: 1.5em;
   margin-left: 10px;
   color: gold;
 }
+.th-text{
+  color:#1e90ff;
+}
 .update-status{
-  background-color: blueviolet;
+  display: flex;
+  background-color: #1e90ff;
   color: aliceblue;
   font-size: xx-large;
-  padding: 30px; 
-  text-align: center;
+  justify-content: center;
   width: 100vw;
   position: -webkit-sticky; 
   position: sticky; top: 0; 
   z-index: 100;
+  margin-bottom: 10px;
 }
 
-
+.update-post-btn{
+  width: 30px;
+  border-radius: 0;
+  padding:3px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -201,7 +234,12 @@ input{
   }
 }
 
+
+
 @media only screen and (max-width: 800px) {
+  .new-word-cat-container{
+    flex-direction: column;
+  }
 .cardinner{
   padding: 0px;
   margin: 0px;
@@ -215,7 +253,12 @@ input{
 
 }
 .newword{
+  width: 100vw;
   flex-direction: column;
+  padding:0px;
+}
+.newcat{
+  width: 100vw;
 }
 .grid>input{
   width:80px;

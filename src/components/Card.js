@@ -23,7 +23,6 @@ function Card() {
                 setCard(response.data);
             }
             console.table(response.data);
-            console.log("Data from getWords" + res);
             setCardNum(0);
         }).catch(error => console.log('Error is: ' + error));
     };
@@ -40,21 +39,29 @@ function Card() {
 
     const nextword = () => {
         if (card && card[cardNum]) {
+          if (cardNum === card.length - 1) {
+            setCardNum(0);
+          } else {
             setCardNum((prev) => prev + 1);
-            console.log('card number is :' + cardNum);
+          }
+          console.log('card number is :' + cardNum);
         } else {
-            console.log("card is undefined");
+          console.log("card is undefined");
         }
-    };
+      };
 
-    const prevword = () => {
+      const prevword = () => {
         if (card && card[cardNum]) {
+          if (cardNum === 0) {
+            setCardNum(card.length - 1);
+          } else {
             setCardNum((prev) => prev - 1);
-            console.log('card number is :' + cardNum);
+          }
+          console.log('card number is :' + cardNum);
         } else {
-            console.log("card is undefined");
+          console.log("card is undefined");
         }
-    };
+      };
 
     return (
         <div className='card'>

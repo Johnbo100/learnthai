@@ -48,23 +48,26 @@ function Newword() {
   return (
     <>
     <div className='new-word'>{nwadded}</div>
+    
     <div className='newword'>
       
-       <li>Add new words:  </li>
+       
        <select name = 'category' onChange={handleChangeCat}>
                 <option>Select category</option>
             {category.map((val,key)=>
                 <option>{val.catname}</option>)} 
             </select>
-       <label>English</label> 
+       <label>En</label> 
        <input
         value={en}
         onChange={handleChangeEn}
+        className='en-text'
        />
-       <label>Thai</label>
+       <label>Th</label>
        <input
         value={th}
         onChange={handleChangeTh}
+        className='th-text'
        />
 
        <button onClick={addWord}>

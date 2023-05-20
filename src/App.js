@@ -10,8 +10,10 @@ function App() {
     <div className="App">
       <Title />
       <Card />
+      <div className='new-word-cat-container'>
       <Categories />
       <Newword />
+      </div>
       <Update />
     </div>
   );
